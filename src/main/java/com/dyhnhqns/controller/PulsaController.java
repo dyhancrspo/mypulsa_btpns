@@ -21,7 +21,7 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class PulsaController {
 
-    public static final Logger logger = LoggerFactory.getLogger(PulsaController.class);
+//    public static final Logger logger = LoggerFactory.getLogger(PulsaController.class);
 
     @Autowired
     PulsaTelkomselRepository pulsaTelkomselRepository;
@@ -53,7 +53,7 @@ public class PulsaController {
     public ResponseEntity<PulsaTelkomsel> getTelkomselById(@PathVariable("phoneNumber") String phoneNumber) {
         try {
             Optional<PulsaTelkomsel> dataTelkomsel = pulsaTelkomselRepository.findById(phoneNumber);
-            logger.info("Fetching telkomsel bills with phoneNumber {}", dataTelkomsel.toString());
+//            logger.info("Fetching telkomsel bills with phoneNumber {}", dataTelkomsel.toString());
             if (dataTelkomsel.isPresent()) {
                 return new ResponseEntity<>(dataTelkomsel.get(), HttpStatus.OK);
             } else {
@@ -69,7 +69,7 @@ public class PulsaController {
     public ResponseEntity<PulsaTelkomsel> createTelkomsel(@RequestBody PulsaTelkomsel pulsaTelkomsel) {
         try {
             PulsaTelkomsel dataTelkomsel = pulsaTelkomselRepository.save(pulsaTelkomsel);
-            logger.info("Create telkomsel bills with phoneNumber {}", dataTelkomsel.toString());
+//            logger.info("Create telkomsel bills with phoneNumber {}", dataTelkomsel.toString());
             return new ResponseEntity<>(dataTelkomsel,HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println("ERROR! on post -telkomsel : " + e);
@@ -86,7 +86,7 @@ public class PulsaController {
                 data.setPhoneNumber(pulsaTelkomsel.getPhoneNumber());
                 data.setMobileBilling(pulsaTelkomsel.getMobileBilling());
                 data.setStatus(pulsaTelkomsel.getStatus());
-                logger.info("Updating telkomsel bills with phoneNumber {}", data.toString());
+//                logger.info("Updating telkomsel bills with phoneNumber {}", data.toString());
                 return new ResponseEntity<>(pulsaTelkomselRepository.save(data),HttpStatus.OK);
             } else  {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -101,7 +101,7 @@ public class PulsaController {
     public ResponseEntity<HttpStatus> deleteTelkomsel(@PathVariable("phoneNumber") String phoneNumber) {
         try{
             pulsaTelkomselRepository.deleteById(phoneNumber);
-            logger.info("Deleting telkomsel bills with phoneNumber {}", phoneNumber.toString());
+//            logger.info("Deleting telkomsel bills with phoneNumber {}", phoneNumber.toString());
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             System.out.println("Error! on delete -telkomsel : " + e);
@@ -130,7 +130,7 @@ public class PulsaController {
     public ResponseEntity<PulsaIndosat> getIndosatById(@PathVariable("phoneNumber") String phoneNumber) {
         try {
             Optional<PulsaIndosat> dataIndosat = pulsaIndosatRepository.findById(phoneNumber);
-            logger.info("Fetching indosat bills with phoneNumber {}", dataIndosat.toString());
+//            logger.info("Fetching indosat bills with phoneNumber {}", dataIndosat.toString());
             if (dataIndosat.isPresent()) {
                 return new ResponseEntity<>(dataIndosat.get(), HttpStatus.OK);
             } else {
@@ -146,7 +146,7 @@ public class PulsaController {
     public ResponseEntity<PulsaIndosat> createIndosat(@RequestBody PulsaIndosat pulsaIndosat) {
         try {
           PulsaIndosat data = pulsaIndosatRepository.save(pulsaIndosat);
-            logger.info("Create indosat bills with phoneNumber {}", data.toString());
+//            logger.info("Create indosat bills with phoneNumber {}", data.toString());
             return new ResponseEntity<>(data, HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println("Error on PulsaController post -Indosat : " + e);
@@ -163,7 +163,7 @@ public class PulsaController {
                     data.setPhoneNumber(pulsaIndosat.getPhoneNumber());
                     data.setMobileBilling(pulsaIndosat.getMobileBilling());
                     data.setStatus(pulsaIndosat.getStatus());
-                    logger.info("Updating indosat bills with phoneNumber {}", data.toString());
+//                    logger.info("Updating indosat bills with phoneNumber {}", data.toString());
                     return new ResponseEntity<>(pulsaIndosatRepository.save(data), HttpStatus.OK);
                 } else {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -178,7 +178,7 @@ public class PulsaController {
     public ResponseEntity<PulsaIndosat> deleteIndosat(@PathVariable("phoneNumber") String phoneNumber) {
         try {
             pulsaIndosatRepository.deleteById(phoneNumber);
-            logger.info("Deleting indosat bills with phoneNumber {}", phoneNumber.toString());
+//            logger.info("Deleting indosat bills with phoneNumber {}", phoneNumber.toString());
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             System.out.println("ERROR! on delete -indosat : " + e);
@@ -206,7 +206,7 @@ public class PulsaController {
     public ResponseEntity<PulsaXL> getXLById(@PathVariable("phoneNumber") String phoneNumber) {
         try {
             Optional<PulsaXL> dataXl = pulsaXLRepository.findById(phoneNumber);
-            logger.info("Fetching xl bills with phoneNumber {}", dataXl.toString());
+//            logger.info("Fetching xl bills with phoneNumber {}", dataXl.toString());
             if (dataXl.isPresent()) {
                 return new ResponseEntity<>(dataXl.get(), HttpStatus.OK);
             } else {
@@ -222,7 +222,7 @@ public class PulsaController {
     public ResponseEntity<PulsaXL> createXL(@RequestBody PulsaXL pulsaXL) {
         try {
             PulsaXL data = pulsaXLRepository.save(pulsaXL);
-            logger.info("Create XL bills with phoneNumber {}", data.toString());
+//            logger.info("Create XL bills with phoneNumber {}", data.toString());
             return new ResponseEntity<>(data, HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println("Error on PulsaController post -xl : " + e);
@@ -239,7 +239,7 @@ public class PulsaController {
                 data.setPhoneNumber(pulsaXL.getPhoneNumber());
                 data.setMobileBilling(pulsaXL.getMobileBilling());
                 data.setStatus(pulsaXL.getStatus());
-                logger.info("Updating xl bills with phoneNumber {}", data.toString());
+//                logger.info("Updating xl bills with phoneNumber {}", data.toString());
                 return new ResponseEntity<>(pulsaXLRepository.save(data), HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -254,7 +254,7 @@ public class PulsaController {
     public ResponseEntity<PulsaXL> deleteXL(@PathVariable("phoneNumber") String phoneNumber) {
         try {
             pulsaXLRepository.deleteById(phoneNumber);
-            logger.info("Deleting xl bills with phoneNumber {}", phoneNumber.toString());
+//            logger.info("Deleting xl bills with phoneNumber {}", phoneNumber.toString());
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             System.out.println("ERROR! on delete -xl : " + e);
